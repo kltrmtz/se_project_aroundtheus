@@ -22,4 +22,4 @@ Good luck and have fun!
 
 **GitHub**
 
-[Link to GitHub Project](https://kltrmtz.github.io/se_project_aroundtheus).
+[Link to GitHub Project](https://kltrmtz.github.io/se_project_aroundtheus/).
