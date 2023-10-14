@@ -1,0 +1,84 @@
+.profile {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.profile__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "title button"
+    "description description";
+  grid-template-columns: minmax(auto, 373px) auto;
+}
+
+.profile__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: left;
+  grid-area: title;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px;
+}
+
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background: transparent url(../images/edit-button.svg) center no-repeat;
+  border-color: white;
+  border-style: 1px solid;
+  grid-area: button;
+  margin-left: 18px;
+  align-self: center;
+}
+
+.profile__edit-button:hover {
+  color: #545454;
+}
+
+.profile__description {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  grid-area: description;
+  margin: 7px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 415px;
+}
+
+.profile__add-button {
+  width: 150px;
+  height: 50px;
+  color: #fff;
+  background: transparent url(../images/add-button.svg) center no-repeat;
+  border-style: 2px solid;
+  margin-left: auto;
+  border-color: white;
+  border-style: solid;
+}
+
+.profile__add-button:hover {
+  color: #545454;
+}
