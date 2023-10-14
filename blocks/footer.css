@@ -1,3 +1,18 @@
+@media screen and (max-width: 320px) {
+  .footer {
+    display: flex;
+    height: 14px;
+    max-width: 282px;
+    padding: 48px 19px 36px;
+    grid-row: 4;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}
+
 .footer {
   display: flex;
   max-width: 880px;
