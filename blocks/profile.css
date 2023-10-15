@@ -135,11 +135,12 @@
     font-size: 14px;
     text-align: center;
     margin: 0 auto;
+    padding-top: 14px;
   }
 
   .profile__add-button {
     padding: 0;
-    margin: 36px 0 0;
+    margin: 36px 0;
     width: 282px;
   }
 }

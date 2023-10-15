@@ -2,7 +2,6 @@
   position: relative;
   max-width: 880px;
   width: 100%;
-  margin-top: 50px;
 }
 
 .cards__list {
@@ -11,12 +10,12 @@
   grid-gap: 20px 17px;
   justify-content: center;
   list-style-type: none;
-  padding: 0;
+  padding: 50px 0;
   margin: 0 auto;
 }
 
 @media screen and (max-width: 775px) {
-  .cards__list {
+  .card__list {
     margin-top: 20px;
   }
 }
@@ -28,5 +27,6 @@
     margin: 0 auto;
     flex-wrap: wrap;
     align-content: center;
+    padding: 0;
   }
 }
