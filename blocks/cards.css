@@ -15,51 +15,6 @@
   margin: 0 auto;
 }
 
-.card__item {
-  display: flex;
-  flex-direction: column;
-  max-width: 282px;
-}
-
-.card__image {
-  max-width: 282px;
-  height: 282px;
-  border-radius: 10px 10px 0 0;
-}
-
-.card__description {
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 20px;
-  border-radius: 0 0 10px 10px;
-}
-
-.card__title {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 29px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 210px;
-  margin: 0;
-}
-
-.card__like-button {
-  background: transparent url(../images/like.svg) center no-repeat;
-  width: 21px;
-  height: 18px;
-  border-style: none;
-}
-
-.card__like-button:hover {
-  opacity: 60%;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 775px) {
   .cards__list {
     margin-top: 20px;
