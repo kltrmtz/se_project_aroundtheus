@@ -16,15 +16,13 @@
   margin: 0;
 }
 
-@media screen and (max-width: 620) {
+@media screen and (max-width: 620px) {
   .footer {
-    display: flex;
     max-width: 282px;
-    padding: 48px 19px 36px;
+    padding: 48px 0 36px;
   }
 
   .footer__copyright {
     font-size: 14px;
-    line-height: 16.94px;
   }
 }
