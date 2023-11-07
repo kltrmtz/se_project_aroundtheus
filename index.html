@@ -37,6 +37,7 @@
               type="button"
               aria-label="add"
               class="profile__add-button"
+              id="profile-add-button"
             ></button>
           </section>
           <section class="cards page__section">
@@ -48,6 +49,8 @@
         </footer>
       </div>
     </div>
+
+    <!-- Edit Modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button
@@ -58,7 +61,7 @@
         <p class="modal__heading">Edit Profile</p>
         <form name="profile-form" class="modal__form">
           <input
-            class="modal__form-content"
+            class="modal__input modal__input_type_title"
             type="text"
             name="title"
             id="profile-title-input"
@@ -66,7 +69,7 @@
             required
           />
           <input
-            class="modal__form-content"
+            class="modal__input modal__input_type_description"
             type="text"
             name="description"
             id="profile-description-input"
@@ -74,6 +77,37 @@
             required
           />
           <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add card modal -->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          type="button"
+          id="add-card-exit-button"
+        ></button>
+        <p class="modal__heading">New Place</p>
+        <form name="card-form" class="modal__form">
+          <input
+            class="modal__input modal__input_type_title"
+            type="text"
+            name="title"
+            id="card-title-input"
+            placeholder="Title"
+            required
+          />
+          <input
+            class="modal__input modal__input_type_link"
+            type="text"
+            name="link"
+            id="card-link-input"
+            placeholder="Image Link"
+            required
+          />
+          <button class="modal__button">Create</button>
         </form>
       </div>
     </div>
