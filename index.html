@@ -56,6 +56,7 @@
         <button
           class="modal__close"
           type="button"
+          aria-label="close"
           id="profile-exit-button"
         ></button>
         <p class="modal__heading">Edit Profile</p>
@@ -81,7 +82,19 @@
       </div>
     </div>
 
-    <!-- add preview image modal -->
+    <!-- Preview Image Modal -->
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__container modal__container-preview">
+        <button
+          class="modal__close modal__close-preview"
+          type="button"
+          aria-label="close"
+          id="preview-image-exit-button"
+        ></button>
+        <img src="#" alt="#" class="modal__preview-image" />
+        <p class="modal__preview-name"></p>
+      </div>
+    </div>
 
     <!-- Add card modal -->
     <div class="modal" id="add-card-modal">
@@ -89,6 +102,7 @@
         <button
           class="modal__close"
           type="button"
+          aria-label="close"
           id="add-card-exit-button"
         ></button>
         <p class="modal__heading">New Place</p>
@@ -116,6 +130,12 @@
 
     <template id="card-template">
       <li class="card">
+        <button
+            type="button"
+            aria-label="delete"
+            class="card__delete-button"
+          ></button>
+        </div>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
@@ -124,7 +144,6 @@
             aria-label="like"
             class="card__like-button"
           ></button>
-        </div>
       </li>
     </template>
 
