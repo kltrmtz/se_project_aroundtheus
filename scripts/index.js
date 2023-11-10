@@ -41,7 +41,6 @@ const profileForm = document.forms["profile-form"];
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewModalContainer = previewImageModal.querySelector(
   ".modal__container-preview"
@@ -49,21 +48,17 @@ const previewModalContainer = previewImageModal.querySelector(
 const previewImageExitButton = document.querySelector(
   "#preview-image-exit-button"
 );
-
 const previewImageEl = previewModalContainer.querySelector(
   ".modal__preview-image"
 );
 const previewNameEl = previewModalContainer.querySelector(
   ".modal__preview-name"
 );
-
 const addNewCardButton = document.querySelector("#profile-add-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardExitButton = document.querySelector("#add-card-exit-button");
 const cardTitle = document.querySelector(".card__title");
-
 const addCardForm = addCardModal.querySelector(".modal__form");
-
 const cardTitleInput = addCardForm.querySelector("#card-title-input");
 const cardLinkInput = addCardForm.querySelector("#card-link-input");
 
