@@ -59,7 +59,7 @@
           aria-label="close"
           id="profile-exit-button"
         ></button>
-        <p class="modal__heading">Edit Profile</p>
+        <h2 class="modal__heading">Edit Profile</h2>
         <form name="profile-form" class="modal__form">
           <input
             class="modal__input modal__input_type_title"
@@ -77,7 +77,7 @@
             placeholder="Description"
             required
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -105,7 +105,7 @@
           aria-label="close"
           id="add-card-exit-button"
         ></button>
-        <p class="modal__heading">New Place</p>
+        <h2 class="modal__heading">New Place</h2>
         <form name="card-form" class="modal__form">
           <input
             class="modal__input modal__input_type_title"
@@ -116,14 +116,14 @@
             required
           />
           <input
-            class="modal__input modal__input_type_link"
-            type="text"
-            name="link"
-            id="card-link-input"
-            placeholder="Image Link"
+            class="modal__input modal__input_type_url"
+            type="url"
+            name="url"
+            id="card-url-input"
+            placeholder="Image URL"
             required
           />
-          <button class="modal__button">Create</button>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
@@ -147,6 +147,6 @@
       </li>
     </template>
 
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>
