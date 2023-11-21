@@ -28,14 +28,30 @@ function hasInvalidInput(inputList) {
 
 // function disableButton
 
+// function disableButton() {
+// if (submitButton) {
+// submitButton.classList.add(inactiveButtonClass);
+// submitButton.disabled = true;
+// }
+// }
+
 // function enableButton
+// function enableButton() {
+// if (submitButton) {
+// submitButton.classList.remove(inactiveButtonClass);
+// submitButton.disabled = false;
+// }
+// }
+//  new code above
 
 function toogleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   if (hasInvalidInput(inputEls)) {
     submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
+
     return;
   }
+
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 }
@@ -51,6 +67,20 @@ function setEventListeners(formEl, options) {
     });
   });
 }
+
+// new new
+
+// function resetValidation() {
+// inputEls.forEach((inputEl) => {
+// checkInputValidity(inputEl);
+// });
+// toogleButtonState();
+// }
+
+// function disableSubmitButton() {
+// disableButton();
+// }
+//
 
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
@@ -73,11 +103,23 @@ function enableValidation(options) {
   });
 }
 
+// new below
+
+function validationMessage(modal) {
+  modal.classList.add("modal__error");
+}
+
+function validationMessage(modal) {
+  modal.classList.remove("modal__error");
+}
+
+// new above
+
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
+  inactiveButtonClass: ".modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
