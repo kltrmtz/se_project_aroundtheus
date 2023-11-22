@@ -28,30 +28,26 @@ function hasInvalidInput(inputList) {
 
 // function disableButton
 
-// function disableButton() {
-// if (submitButton) {
-// submitButton.classList.add(inactiveButtonClass);
-// submitButton.disabled = true;
-// }
-// }
+function disableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
 
 // function enableButton
-// function enableButton() {
-// if (submitButton) {
-// submitButton.classList.remove(inactiveButtonClass);
-// submitButton.disabled = false;
-// }
-// }
-//  new code above
 
-function toogleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+function enableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
+}
+
+//  toggle Button
+
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   if (hasInvalidInput(inputEls)) {
     submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
-
     return;
   }
-
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
 }
@@ -63,24 +59,10 @@ function setEventListeners(formEl, options) {
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
-      toogleButtonState(inputEls, submitButton, options);
+      toggleButtonState(inputEls, submitButton, options);
     });
   });
 }
-
-// new new
-
-// function resetValidation() {
-// inputEls.forEach((inputEl) => {
-// checkInputValidity(inputEl);
-// });
-// toogleButtonState();
-// }
-
-// function disableSubmitButton() {
-// disableButton();
-// }
-//
 
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
@@ -103,7 +85,14 @@ function enableValidation(options) {
   });
 }
 
-// new below
+// reset - error
+
+function resetValidation() {
+  inputEls.forEach((inputEl) => {
+    checkInputValidity(inputEl);
+  });
+  toggleButtonState();
+}
 
 function validationMessage(modal) {
   modal.classList.add("modal__error");
@@ -112,8 +101,6 @@ function validationMessage(modal) {
 function validationMessage(modal) {
   modal.classList.remove("modal__error");
 }
-
-// new above
 
 const config = {
   formSelector: ".modal__form",

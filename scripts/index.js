@@ -67,16 +67,16 @@ const cardUrlInput = addCardForm.querySelector("#card-url-input");
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleKeyDown);
+  document.removeEventListener("keydown", escapeKeyDown);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("keydown", escapeKeyDown);
 }
 
-// new close escape
-function handleKeyDown(e) {
+// close escape
+function escapeKeyDown(e) {
   if (e.key === "Escape") {
     const modal = document.querySelector(".modal_opened");
     closePopup(modal);
@@ -147,7 +147,8 @@ function handleAddCardFormSubmit(e) {
 
 /* Event Listeners */
 
-// new close popups overlay
+// close popups overlay
+
 const popups = document.querySelectorAll(".modal");
 
 popups.forEach((popup) => {
@@ -157,7 +158,6 @@ popups.forEach((popup) => {
     }
   });
 });
-// new above
 
 profileEditButton.addEventListener("click", () => openModal(profileEditModal));
 
