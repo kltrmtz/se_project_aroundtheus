@@ -95,11 +95,11 @@ function resetValidation() {
   toggleButtonState();
 }
 
-function enableValidationMessage(modal) {
+function handleValidationMessage(modal) {
   modal.classList.add(config.errorClass);
 }
 
-function disableValidationMessage(modal) {
+function handleValidationMessage(modal) {
   modal.classList.remove(config.errorClass);
 }
 
