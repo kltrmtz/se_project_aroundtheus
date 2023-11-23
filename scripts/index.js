@@ -67,16 +67,16 @@ const cardUrlInput = addCardForm.querySelector("#card-url-input");
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", escapeKeyDown);
+  document.removeEventListener("keydown", handleCloseOnEscape);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", escapeKeyDown);
+  document.addEventListener("keydown", handleCloseOnEscape);
 }
 
 // close escape
-function escapeKeyDown(e) {
+function handleCloseOnEscape(e) {
   if (e.key === "Escape") {
     const modal = document.querySelector(".modal_opened");
     closePopup(modal);
@@ -152,8 +152,11 @@ function handleAddCardFormSubmit(e) {
 const popups = document.querySelectorAll(".modal");
 
 popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("modal_opened")) {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("modal__close")) {
       closePopup(popup);
     }
   });
