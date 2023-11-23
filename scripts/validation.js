@@ -45,10 +45,12 @@ function enableButton(submitButton, inactiveButtonClass) {
 
 function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   if (hasInvalidInput(inputEls)) {
-    submitButton.disabled = true;
+    // submitButton.disabled = true;
+    disableButton(submitButton, inactiveButtonClass);
     return;
   }
-  submitButton.disabled = false;
+  // submitButton.disabled = false;
+  enableButton(submitButton, inactiveButtonClass);
 }
 
 function setEventListeners(formEl, options) {
@@ -93,12 +95,12 @@ function resetValidation() {
   toggleButtonState();
 }
 
-function validationMessage(modal) {
-  modal.classList.add(errorClass);
+function enableValidationMessage(modal) {
+  modal.classList.add(config.errorClass);
 }
 
-function validationMessage(modal) {
-  modal.classList.remove(errorClass);
+function disableValidationMessage(modal) {
+  modal.classList.remove(config.errorClass);
 }
 
 const config = {
