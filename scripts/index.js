@@ -152,7 +152,11 @@ popups.forEach((popup) => {
   });
 });
 
-profileEditButton.addEventListener("click", () => openModal(profileEditModal));
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  openModal(profileEditModal);
+});
 
 profileExitButton.addEventListener("click", () => closePopup(profileEditModal));
 
