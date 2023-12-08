@@ -28,16 +28,6 @@ const initialCards = [
   },
 ];
 
-// today
-
-// const cardData = {
-//   name: "",
-//   link: "",
-// };
-
-// const card = new Card(cardData, "#card-template", handleImageClick);
-// card.getView();
-
 /* Elements */
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -127,12 +117,12 @@ function renderCard(cardData, cardListEl) {
 //   const cardElement = cardTemplate.cloneNode(true);
 //   const cardImageEl = cardElement.querySelector(".card__image");
 //   const cardTitleEl = cardElement.querySelector(".card__title");
-//   // const likeButton = cardElement.querySelector(".card__like-button");
-//   // const deleteButton = cardElement.querySelector(".card__delete-button");
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-//   // deleteButton.addEventListener("click", () => {
-//   //   cardElement.remove("card");
-//   // });
+//   deleteButton.addEventListener("click", () => {
+//     cardElement.remove("card");
+//   });
 
 //   cardImageEl.addEventListener("click", () => {
 //     openModal(previewImageModal);
@@ -141,13 +131,13 @@ function renderCard(cardData, cardListEl) {
 //     previewNameEl.textContent = cardData.name;
 //   });
 
-// likeButton.addEventListener("click", () => {
-//   likeButton.classList.toggle("card__like-button_active");
-// });
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card__like-button_active");
+//   });
 
-// cardImageEl.src = cardData.link;
-// cardImageEl.alt = cardData.name;
-// cardTitleEl.textContent = cardData.name;
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.name;
+//   cardTitleEl.textContent = cardData.name;
 
 //   return cardElement;
 // }
@@ -156,9 +146,9 @@ function renderCard(cardData, cardListEl) {
 
 function handleImageClick(name, link) {
   openModal(previewImageModal);
-  this._cardImageEl.src = `url(${this._link})`;
-  this._cardImageEl.alt = this._name;
-  this._cardNameEl.textContent = this._name;
+  cardImageEl.src = link;
+  cardImageEl.alt = name;
+  cardNameEl.textContent = name;
 }
 
 /* Event Handlers */

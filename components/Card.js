@@ -1,32 +1,29 @@
 class Card {
-  constructor(cardData, cardSelector, handleImageClick) {
-    this._name = cardData.name;
-    this._link = cardData.link;
+  constructor({ name, link }, cardSelector, handleImageClick) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
   }
 
   _setEventListeners() {
-    // ".card__image"
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => this._handleImageClick());
 
-    // ".card__like-button"
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeIcon());
 
-    // ".card__delete-button"
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
   }
 
   _handleImageClick() {
-    this._cardImageEl
+    this._cardElement
       .querySelector("#preview-image-modal")
-      .addEventListener("click", () => this._link, this._name);
+      .addEventListener("click", () => this.name, this._link);
   }
 
   _handleLikeIcon() {
@@ -49,17 +46,17 @@ class Card {
 
   getView() {
     this._cardElement = this._getElement();
-    // this._cardImageEl = this._cardElement.querySelector(".card__image");
-    // this._cardTitleEl = this._cardElement.querySelector(".card__title");
+    this._cardImageEl = this._cardElement.querySelector(".card__image");
+    this._cardTitleEl = this._cardElement.querySelector(".card__title");
     this._cardLikeButton =
       this._cardElement.querySelector(".card__like-button");
     this._cardDeleteButton = this._cardElement.querySelector(
       ".card__delete-button"
     );
-    // this._cardImageEl.querySelector(
-    //   ".card__Image"
-    // ).style.backgroundImage = `url(${this._link})`;
-    // this._cardTitleEl.querySelector(".card__title").textcontent = this._name;
+
+    this._cardImageEl.src = this._link;
+    this._cardImageEl.alt = this._name;
+    this._cardTitleEl.textContent = this._name;
 
     this._setEventListeners();
 
