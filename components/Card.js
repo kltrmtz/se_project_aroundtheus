@@ -9,7 +9,9 @@ class Card {
   _setEventListeners() {
     this._cardElement
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handleImageClick());
+      .addEventListener("click", () =>
+        this._handleImageClick(this._name, this._link)
+      );
 
     this._cardElement
       .querySelector(".card__like-button")
@@ -23,7 +25,7 @@ class Card {
   _handleImageClick() {
     this._cardElement
       .querySelector("#preview-image-modal")
-      .addEventListener("click", () => this.name, this._link);
+      .addEventListener("click", () => this._name, this._link);
   }
 
   _handleLikeIcon() {

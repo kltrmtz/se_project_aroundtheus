@@ -109,7 +109,6 @@ function handleCloseOnEscape(e) {
 
 function renderCard(cardData, cardListEl) {
   const card = new Card(cardData, cardSelector, handleImageClick);
-  // const cardElement = getCardElement(cardData);
   cardListEl.prepend(card.getView());
 }
 
@@ -208,7 +207,5 @@ previewImageExitButton.addEventListener("click", () =>
 );
 
 initialCards.forEach((cardData) => {
-  // const cardElement = getCardElement(cardData);
-
   renderCard(cardData, cardListEl);
 });
