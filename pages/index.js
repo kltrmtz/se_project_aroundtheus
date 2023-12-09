@@ -166,7 +166,7 @@ function handleAddCardFormSubmit(e) {
   renderCard({ name, link }, cardListEl);
   closePopup(addCardModal);
   addCardFormEl.reset();
-  addFormValidator._toggleButtonState();
+  addFormValidator.toggleButtonState();
 }
 
 /* Event Listeners */
