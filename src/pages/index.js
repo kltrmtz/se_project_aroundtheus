@@ -157,6 +157,9 @@ function handleEditProfileFormSubmit(e) {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
+
+  // new add after review
+  editFormValidator.resetValidation();
 }
 
 function handleAddCardFormSubmit(e) {
