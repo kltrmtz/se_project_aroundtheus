@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/section.js";
+i;
 
 const initialCards = [
   {
@@ -28,23 +29,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-// new
-const cardListEl = new Section({
-  renderer: (data) => {
-    const card = new Card(
-      {
-        data,
-        handleImageClick: () => {
-          cardImageEl.open(data);
-        },
-      },
-      cardsConfig.cardSelector
-    );
-
-    cardListEl.addItem(card.getView());
-  },
-});
 
 /* Elements */
 
@@ -102,6 +86,22 @@ const addFormValidator = new FormValidator(validationSettings, addFormEl);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+
+// new
+const cardSection = new Section({
+  items: (cardData) => {
+    const cardListEl = new Card({
+      cardData,
+      handleImageClick: () => {
+        cardImageEl.open(cardData);
+      },
+    });
+
+    cardListEl.addItem(card.getView());
+  },
+});
+
+cardSection.renderItems();
 
 /* Functions */
 
