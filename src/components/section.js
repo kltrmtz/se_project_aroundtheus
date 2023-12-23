@@ -6,8 +6,8 @@ class Section {
   }
 
   rendererItems() {
-    this._itemsitems.forEach((data) => {
-      this._renderer(data);
+    this._items.forEach((cardData) => {
+      this._renderer(cardData);
     });
   }
 

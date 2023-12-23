@@ -1,7 +1,11 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/section.js";
-i;
+import "./index.css";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 
 const initialCards = [
   {
@@ -89,19 +93,22 @@ addFormValidator.enableValidation();
 
 // new
 const cardSection = new Section({
-  items: (cardData) => {
-    const cardListEl = new Card({
-      cardData,
-      handleImageClick: () => {
-        cardImageEl.open(cardData);
-      },
-    });
-
-    cardListEl.addItem(card.getView());
+  items: initialCards,
+  renderer: (cardData) => {
+    const cardListEl = new Card(cardData);
+    handleImageClick: (item) => {
+      cardImageEl.open(items);
+    };
+    cardListEl;
   },
 });
 
-cardSection.renderItems();
+cardSection.rendererItems();
+
+const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
+newCardPopup.open();
+
+newCardPopup.close();
 
 /* Functions */
 
