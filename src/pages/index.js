@@ -91,24 +91,35 @@ const addFormValidator = new FormValidator(validationSettings, addFormEl);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-// new
-const cardSection = new Section({
-  items: initialCards,
-  renderer: (cardData) => {
-    const cardListEl = new Card(cardData);
-    handleImageClick: (item) => {
-      cardImageEl.open(items);
-    };
-    cardListEl;
-  },
-});
+// new new
 
-cardSection.rendererItems();
+const popupWithImage = new PopupWithImage("#preview-image-modal");
+popupWithImage.setEventListeners();
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardListEl = createCard(cardData);
+      cardSection.addItem(cardListEl);
+    },
+  },
+  ".cards__list"
+);
+
+cardSection.renderItems();
 
 const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
 newCardPopup.open();
 
 newCardPopup.close();
+
+function createCard(cardData) {
+  const cardElement = new Card(cardData, "#card-template", () => {
+    popupWithImage.open(cardData.link, cardData.name);
+  });
+  return cardElement.getView();
+}
 
 /* Functions */
 

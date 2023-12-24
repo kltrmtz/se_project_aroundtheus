@@ -14,10 +14,10 @@ class PopupWithImage extends Popup {
     // from indexjs
     // function handleImageClick(name, link) {
     //     openModal(previewImageModal);
-    //     cardImageEl.src = link;
-    //     cardImageEl.alt = name;
-    //     cardNameEl.textContent = name;
-    //   }
+    //   cardImageEl.src = link;
+    //   cardImageEl.alt = name;
+    //   cardNameEl.textContent = name;
+    // }
   }
 
   close() {
