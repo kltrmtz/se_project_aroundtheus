@@ -30,7 +30,7 @@ class Popup {
   }
 
   // listens for esc button
-  _handleEscClose() {
+  _handleEscClose(e) {
     if (e.key === "Escape") {
       this.close();
       // from indexjs

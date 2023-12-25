@@ -15,7 +15,7 @@
       <div class="page__content">
         <header class="header page__section">
           <img
-            src="./src/images/logo.svg"
+            src="<%=require('./images/logo.svg')%>"
             alt="logo image"
             class="header__logo"
           />
@@ -23,7 +23,7 @@
         <main class="profile">
           <section class="profile__content page__section">
             <img
-              src="../src/images/jacques-cousteau.jpg"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Jacques Cousteau"
               class="profile__image"
             />
@@ -106,8 +106,8 @@
           aria-label="close"
           id="preview-image-exit-button"
         ></button>
-        <img src="#" alt="#" class="modal__preview-image" />
-        <p class="modal__preview-name"></p>
+        <img src="#" alt="#" class="modal__preview-image" id="preview-image" />
+        <p class="modal__preview-name" id="preview-name"></p>
       </div>
     </div>
 
