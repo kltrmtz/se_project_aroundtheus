@@ -7,7 +7,7 @@ class Popup {
   open() {
     this._popupElement.classList.add("modal_opened");
 
-    document.addEventListener("keydown", handleCloseOnEscape);
+    document.addEventListener("keydown", this._handleEscClose);
 
     // from indexjs
     // function openModal(modal) {
@@ -19,8 +19,8 @@ class Popup {
   // closes popup
   close() {
     this._popupElement.classList.remove("modal_opened");
-
-    document.removeEventListener("keydown", handleCloseOnEscape);
+    // today
+    document.removeEventListener("keydown", this._handleEscClose);
 
     // from indexjs
     // function closePopup(modal) {
@@ -44,9 +44,16 @@ class Popup {
   }
 
   // sets event listeners
+  // setEventListeners() {
+  //   this._popupElement.addEventListener("click", (e) => {
+  //     if (e.target.classList.contains("modal_opened")) {
+  //       this.close();
+  //     }
+  // });
+  // today
   setEventListeners() {
     this._popupElement.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal_opened")) {
+      if (e.target.classList.contains("modal__close")) {
         this.close();
       }
     });
