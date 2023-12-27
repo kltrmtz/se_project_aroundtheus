@@ -126,6 +126,16 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open(addCardModal);
 });
 
+// function handleAddCardFormSubmit(e) {
+//   e.preventDefault();
+//   const name = cardTitleInput.value;
+//   const link = cardUrlInput.value;
+//   renderCard({ name, link }, cardListEl);
+//   closePopup(addCardModal);
+//   addCardFormEl.reset();
+//   addFormValidator.toggleButtonState();
+// }
+
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   (modalData) => {
@@ -136,6 +146,10 @@ const editProfilePopup = new PopupWithForm(
   }
 );
 editProfilePopup.setEventListeners();
+
+profileEditButton.addEventListener("click", () => {
+  editProfilePopup.open(profileEditModal);
+});
 
 function createCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", () => {
