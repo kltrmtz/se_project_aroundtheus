@@ -17,33 +17,10 @@ class PopupWithForm extends Popup {
     const inputs = this._popupForm.querySelectorAll(".modal__input");
 
     inputs.forEach((input) => {
-      inputValues((input.name = input.value));
+      inputValues[input.name] = input.value;
     });
     return inputValues;
   }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-  }
-  // function handleAddCardFormSubmit(e) {
-  //   e.preventDefault();
-  //   const name = cardTitleInput.value;
-  //   const link = cardUrlInput.value;
-  //   renderCard({ name, link }, cardListEl);
-  //   closePopup(addCardModal);
-  //   addCardFormEl.reset();
-  //   addFormValidator.toggleButtonState();
-  // }
-
-  // function handleEditProfileFormSubmit(e) {
-  //   e.preventDefault();
-  //   profileTitle.textContent = profileTitleInput.value;
-  //   profileDescription.textContent = profileDescriptionInput.value;
-  //   closePopup(profileEditModal);
-
-  //   // new add after review
-  //   editFormValidator.resetValidation();
-  // }
 
   setEventListeners() {
     super.setEventListeners();

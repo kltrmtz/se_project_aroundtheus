@@ -1,19 +1,19 @@
 class UserInfo {
-  constructor(nameElement, jobElement) {
+  constructor(nameElement, titleElement) {
     this._nameElement = nameElement;
-    this._jobElement = jobElement;
+    this._titleElement = titleElement;
   }
 
   getUserInfo() {
     return {
       name: this._nameElement.textContent,
-      job: this._jobElement.textContent,
+      title: this._titleElement.textContent,
     };
   }
 
-  setUserInfo() {
+  setUserInfo(name, title) {
     this._nameElement.textContent = name;
-    this._jobElement.textContent = job;
+    this._titleElement.textContent = title;
   }
 }
 
