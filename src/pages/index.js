@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Section from "../components/sngggg2.js";
+import Section from "../components/Section.js";
 import "./index.css";
 // import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
