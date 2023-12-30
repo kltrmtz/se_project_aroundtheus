@@ -75,7 +75,6 @@ class FormValidator {
 
   // new add after review
   resetValidation() {
-    this._form.reset();
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });

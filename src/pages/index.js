@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Section from "../components/section.js";
+import Section from "../components/sngggg2.js";
 import "./index.css";
 // import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -12,6 +12,8 @@ import {
   profileEditModal,
   profileTitle,
   profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
   cardListEl,
   addNewCardButton,
   addCardModal,
@@ -58,36 +60,37 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 function handleNewCardSubmit(name, link) {
-  renderCard({ name, link }, cardListEl);
   addFormValidator.toggleButtonState();
+  renderCard({ name, link }, cardListEl);
+
   newCardPopup.close();
 }
 
 // new user info
 
-const userInfo = new UserInfo(profileTitle, profileDescription);
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 // new edit profile form
 
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
-  (modalData) => {
-    const title = modalData.title;
-    const description = modalData.description;
-    userInfo.setUserInfo(title, description);
-    handleEditProfileFormSubmit(modalData);
-  }
+  handleEditProfileFormSubmit
 );
+
 editProfilePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  editProfilePopup.open(profileEditModal);
+  editFormValidator.resetValidation();
+  const { title, description } = userInfo.getUserInfo();
+  profileTitleInput.value = title;
+  profileDescriptionInput.value = description;
+
+  editProfilePopup.open();
 });
 
 function handleEditProfileFormSubmit(modalData) {
   userInfo.setUserInfo(modalData.title, modalData.description);
   editProfilePopup.close();
-  editFormValidator.resetValidation();
 }
 
 // new cardselector
@@ -105,9 +108,9 @@ function createCard(cardData) {
   return cardElement.getView();
 }
 
-function renderCard(cardData, cardListEl) {
+function renderCard(cardData) {
   const card = new Card(cardData, cardSelector, handleImageClick);
-  cardListEl.prepend(card.getView());
+  cardSection.addItem(card.getView());
 }
 
 function handleImageClick(link, name) {

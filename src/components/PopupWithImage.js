@@ -12,21 +12,6 @@ class PopupWithImage extends Popup {
     this._previewImage.alt = name;
     this._previewName.textContent = name;
     super.open();
-
-    // const cardImageEl = this._popupElement.queryselector(link);
-    // const cardNameEl = this._popupElement.queryselector(name);
-
-    // from indexjs
-    // function handleImageClick(name, link) {
-    //     openModal(previewImageModal);
-    //   cardImageEl.src = link;
-    //   cardImageEl.alt = name;
-    //   cardNameEl.textContent = name;
-    // }
-  }
-
-  close() {
-    super.close();
   }
 }
 

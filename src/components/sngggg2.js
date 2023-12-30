@@ -6,20 +6,12 @@ class Section {
   }
 
   renderItems() {
-    this._items.forEach((cardData) => {
-      this._renderer(cardData);
-    });
+    this._items.forEach(this._renderer);
   }
 
   addItem(element) {
-    this._container.append(element);
+    this._container.prepend(element);
   }
 }
-
-// new Section({
-//   renderer: () => {
-//     // logic
-//   },
-// });
 
 export default Section;

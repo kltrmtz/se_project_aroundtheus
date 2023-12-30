@@ -7,11 +7,10 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () =>
-        this._handleImageClick(this._name, this._link)
-      );
+    this._cardElement;
+    this._cardImageEl.addEventListener("click", () =>
+      this._handleImageClick(this._name, this._link)
+    );
 
     this._cardLikeButton.addEventListener("click", () =>
       this._handleLikeIcon()
@@ -20,12 +19,6 @@ class Card {
     this._cardDeleteButton.addEventListener("click", () =>
       this._handleDeleteCard()
     );
-  }
-
-  _handleImageClick() {
-    this._cardElement
-      .querySelector("#preview-image-modal")
-      .addEventListener("click", () => this._name, this._link);
   }
 
   _handleLikeIcon() {

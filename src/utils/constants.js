@@ -32,10 +32,10 @@ export const profileTitle = document.querySelector(".profile__title");
 export const profileDescription = document.querySelector(
   ".profile__description"
 );
-// const profileTitleInput = document.querySelector("#profile-title-input");
-// const profileDescriptionInput = document.querySelector(
-//   "#profile-description-input"
-// );
+export const profileTitleInput = document.querySelector("#profile-title-input");
+export const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
 // const profileEditForm = profileEditModal.querySelector(".modal__form");
 // const profileForm = document.forms["profile-form"];
 export const cardListEl = document.querySelector(".cards__list");

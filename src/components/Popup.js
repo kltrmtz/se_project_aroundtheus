@@ -26,14 +26,12 @@ class Popup {
 
   setEventListeners() {
     this._popupElement.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal__close")) {
+      if (
+        e.target.classList.contains("modal__close") ||
+        e.target.classList.contains("modal_opened")
+      ) {
         this.close();
       }
-      this._popupElement.addEventListener("click", (e) => {
-        if (e.target.classList.contains("modal_opened")) {
-          this.close();
-        }
-      });
     });
   }
 }
