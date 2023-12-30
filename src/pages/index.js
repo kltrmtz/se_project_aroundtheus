@@ -36,8 +36,8 @@ addFormValidator.enableValidation();
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => {
-      const cardListEl = createCard(cardData);
+    renderer: (renderCard) => {
+      const cardListEl = createCard(renderCard);
       cardSection.addItem(cardListEl);
     },
   },
@@ -56,11 +56,11 @@ const newCardPopup = new PopupWithForm("#add-card-modal", (modalData) => {
 newCardPopup.setEventListeners();
 
 addNewCardButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
   newCardPopup.open(addCardModal);
 });
 
 function handleNewCardSubmit(name, link) {
-  addFormValidator.toggleButtonState();
   renderCard({ name, link }, cardListEl);
 
   newCardPopup.close();
@@ -109,8 +109,8 @@ function createCard(cardData) {
 }
 
 function renderCard(cardData) {
-  const card = new Card(cardData, cardSelector, handleImageClick);
-  cardSection.addItem(card.getView());
+  const createCard = new Card(cardData, cardSelector, handleImageClick);
+  cardSection.addItem(createCard.getView());
 }
 
 function handleImageClick(link, name) {

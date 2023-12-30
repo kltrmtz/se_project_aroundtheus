@@ -7,7 +7,6 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardElement;
     this._cardImageEl.addEventListener("click", () =>
       this._handleImageClick(this._name, this._link)
     );
