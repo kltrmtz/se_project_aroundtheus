@@ -36,10 +36,7 @@ addFormValidator.enableValidation();
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (renderCard) => {
-      const cardListEl = createCard(renderCard);
-      cardSection.addItem(cardListEl);
-    },
+    renderer: renderCard,
   },
   ".cards__list"
 );
@@ -61,7 +58,7 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 function handleNewCardSubmit(name, link) {
-  renderCard({ name, link }, cardListEl);
+  renderCard({ name, link });
 
   newCardPopup.close();
 }
@@ -109,16 +106,16 @@ function createCard(cardData) {
 }
 
 function renderCard(cardData) {
-  const createCard = new Card(cardData, cardSelector, handleImageClick);
-  cardSection.addItem(createCard.getView());
-}
-
-function handleImageClick(link, name) {
-  popupWithImage.open(name, link);
+  const cardElement = createCard(cardData);
+  cardSection.addItem(cardElement);
 }
 
 // vvv old vvv //
 /* Functions */
+
+// function handleImageClick(link, name) {
+//   popupWithImage.open(name, link);
+// }
 
 // function openModal(modal) {
 //   modal.classList.add("modal_opened");
