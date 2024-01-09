@@ -1,3 +1,4 @@
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -109,6 +110,48 @@ function renderCard(cardData) {
   const cardElement = createCard(cardData);
   cardSection.addItem(cardElement);
 }
+
+// new Api
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "0b8c38f4-d4b8-4f4c-9f71-c5f40b59e7bc",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getUserInfo()
+  .then((res) => {
+    userInfo.getUserInfo(res);
+    // Need to Create this function
+    // userInfo.setUserAvatar(res);
+  })
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  });
+
+api
+  .getInitialCards()
+  .then((items) => {
+    // process the result
+    cardSection.renderItems(items);
+  })
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  });
+
+// fetch("https://around-api.en.tripleten-services.com/v1", {
+//   headers: {
+//     // authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+//     authorization: "145bcc9f-2daa-4928-8610-f863960cc29a",
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 
 // vvv old vvv //
 /* Functions */
