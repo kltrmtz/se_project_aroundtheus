@@ -22,18 +22,37 @@
         </header>
         <main class="profile">
           <section class="profile__content page__section">
-            <button
+            <div class="profile__image-container">
+              <button
+                type="button"
+                aria-label="avatar"
+                class="profile__image profile__image-avatar-button"
+                id="profile-avatar-button"
+              >
+                <img
+                  src="<%=require('./images/jacques-cousteau.jpg')%>"
+                  alt="Jacques Cousteau"
+                  class="profile__image profile__image-avatar-button"
+                />
+              </button>
+            </div>
+            <!-- <button
               type="button"
               aria-label="avatar"
-              class="profile__image profile__avatar-button"
+              class="profile__image-avatar-button"
               id="profile-avatar-button"
-              src="url"
-            ></button>
-            <img
+            >
+              <img
+                src="<%=require('./images/jacques-cousteau.jpg')%>"
+                alt="Jacques Cousteau"
+                class="profile__image"
+              />
+            </button> -->
+            <!-- <img
               src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Jacques Cousteau"
               class="profile__image"
-            />
+            /> -->
             <div class="profile__info">
               <h1 class="profile__title">Jacques Cousteau</h1>
               <button
@@ -209,6 +228,7 @@
           type="button"
           aria-label="delete"
           class="card__delete-button"
+          id="delete-card-button"
         ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">

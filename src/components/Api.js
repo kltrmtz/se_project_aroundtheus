@@ -26,7 +26,7 @@ class Api {
   }
 
   // Update User Info
-  updateUserProfileInfo(title, description) {
+  updateUserProfileInfo({ title, description }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -78,7 +78,7 @@ class Api {
 
   //  Delete Card
   deleteCards(id) {
-    return fetch(`${this.baseUrl}/cards`, {
+    return fetch(`${this.baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
@@ -91,13 +91,13 @@ class Api {
   }
 
   // Post Create Card
-  createCard(card) {
+  createCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: card.name,
-        link: card.link,
+        name: name,
+        link: link,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -110,7 +110,7 @@ class Api {
 
   // Put Like Card
   likeCards(id) {
-    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this._headers,
       method: "PUT",
     }).then((res) => {
@@ -124,7 +124,7 @@ class Api {
 
   // Delete Dislike Card
   dislikeCards(id) {
-    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this._headers,
       method: "DELETE",
     }).then((res) => {
