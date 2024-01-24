@@ -7,13 +7,13 @@ class Api {
     // this._headers = {
     //   "Content-Type": "application/json",
     // };
-    this.baseUrl = baseUrl;
+    this._baseUrl = baseUrl;
     this._headers = headers;
   }
 
   //  Get User Info
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
@@ -27,7 +27,7 @@ class Api {
 
   // Update User Info
   updateUserProfileInfo({ title, description }) {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -62,7 +62,7 @@ class Api {
 
   //  Get Cards
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
@@ -77,8 +77,8 @@ class Api {
   // other methods for working with the API
 
   //  Delete Card
-  deleteCards(id) {
-    return fetch(`${this.baseUrl}/cards/${id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
@@ -92,7 +92,7 @@ class Api {
 
   // Post Create Card
   createCard({ name, link }) {
-    return fetch(`${this.baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({

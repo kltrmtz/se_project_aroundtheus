@@ -26,13 +26,13 @@
               <button
                 type="button"
                 aria-label="avatar"
-                class="profile__image profile__image-avatar-button"
+                class="profile__image-avatar-button"
                 id="profile-avatar-button"
               >
                 <img
                   src="<%=require('./images/jacques-cousteau.jpg')%>"
                   alt="Jacques Cousteau"
-                  class="profile__image profile__image-avatar-button"
+                  class="profile__image"
                 />
               </button>
             </div>
@@ -186,10 +186,8 @@
           id="delete-card-exit-button"
         ></button>
         <h2 class="modal__heading">Are you sure?</h2>
-        <form name="delete-card-form" class="modal__form">
-          <button class="modal__button modal__button_disabled" type="submit">
-            Yes
-          </button>
+        <form name="delete-card-form" class="modal__form" novalidate>
+          <button class="modal__button" type="submit">Yes</button>
         </form>
       </div>
     </div>
@@ -228,7 +226,6 @@
           type="button"
           aria-label="delete"
           class="card__delete-button"
-          id="delete-card-button"
         ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">

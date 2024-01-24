@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import "./index.css";
 // import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
@@ -50,37 +51,59 @@ deleteFormValidator.enableValidation();
 
 // new delete card form
 
-const deleteCardPopup = new PopupWithForm(
-  "#delete-card-modal",
-  handleDeleteCardClick,
-  handleDeleteCardSubmit
+const deleteCardPopup = new PopupWithSubmit(
+  "#delete-card-modal"
+  // handleDeleteClick
+  // handleDeleteCardSubmit
 );
 
 deleteCardPopup.setEventListeners();
 
-cardDeleteButton.addEventListener("click", () => {
-  // deleteFormValidator.resetValidation();
-  deleteCardPopup.open(deleteCardModal);
-});
+// cardDeleteButton.addEventListener("click", () => {
+//   // deleteFormValidator.resetValidation();
+//   deleteCardPopup.open(deleteCardModal);
+// });
 
-function handleDeleteCardClick(cardData) {
-  console.log(cardData);
+function handleDeleteClick(card) {
+  // console.log(cardData);
+  // open modal
+  // deleteCardPopup.open(deleteCardModal);
+  deleteCardPopup.open();
+  // call set submit action
+  // pass set submit action handleDeleteCardSubmit
+  deleteCardPopup.setSubmitAction(() => {
+    api
+      .deleteCard(card._Id)
+      .then(() => {
+        card.handleDeleteClick();
+        deleteFormValidator.resetValidation();
+
+        deleteCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
+  });
 }
 
-function handleDeleteCardSubmit(id) {
-  api
-    .deleteCards(id)
-    .then((res) => {
-      cardSection.addItem({ name, link });
+// --yesterday
+// function handleDeleteCardSubmit(id) {
+//   // this is where you open the modal
+//   // call setSubmitAction method
+//   // pass the setSubmitAction method the api related code
+//   api
+//     .deleteCards(id)
+//     .then((res) => {
+//       cardSection.addItem({ name, link });
 
-      renderCard({ name, link });
+//       renderCard({ name, link });
 
-      deleteCardPopup.close();
-    })
-    .catch((err) => {
-      console.log(err); // log the error to the console
-    });
-}
+//       deleteCardPopup.close();
+//     })
+//     .catch((err) => {
+//       console.log(err); // log the error to the console
+//     });
+// }
 
 // new add card form
 
@@ -153,14 +176,26 @@ const cardSelector = "#card-template";
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
 
+// recommended by tutor..breaks code
+// function createCard(cardData) {
+//   const cardElement = new Card({
+//     data: { cardData },
+//     handleImageClick: (cardElement) => {
+//       popupWithImage.open(cardData.link, cardData.name);
+//     },
+//   });
+//   return cardElement.getView();
+// }
+
 function createCard(cardData) {
   const cardElement = new Card(
     cardData,
     "#card-template",
-
     () => {
       popupWithImage.open(cardData.link, cardData.name);
-    }
+    },
+    // pass the delete handler
+    handleDeleteClick
   );
   return cardElement.getView();
 }
