@@ -51,59 +51,27 @@ deleteFormValidator.enableValidation();
 
 // new delete card form
 
-const deleteCardPopup = new PopupWithSubmit(
-  "#delete-card-modal"
-  // handleDeleteClick
-  // handleDeleteCardSubmit
-);
+const deleteCardPopup = new PopupWithSubmit("#delete-card-modal");
 
 deleteCardPopup.setEventListeners();
 
-// cardDeleteButton.addEventListener("click", () => {
-//   // deleteFormValidator.resetValidation();
-//   deleteCardPopup.open(deleteCardModal);
-// });
-
 function handleDeleteClick(card) {
-  // console.log(cardData);
-  // open modal
-  // deleteCardPopup.open(deleteCardModal);
+  // const cardId = card.getId();
   deleteCardPopup.open();
-  // call set submit action
-  // pass set submit action handleDeleteCardSubmit
+
   deleteCardPopup.setSubmitAction(() => {
     api
-      .deleteCard(card._Id)
+      // .deleteCard(card.getId())
+      .deleteCard(card._id)
       .then(() => {
         card.handleDeleteClick();
-        deleteFormValidator.resetValidation();
-
         deleteCardPopup.close();
       })
       .catch((err) => {
-        console.log(err); // log the error to the console
+        console.log(err);
       });
   });
 }
-
-// --yesterday
-// function handleDeleteCardSubmit(id) {
-//   // this is where you open the modal
-//   // call setSubmitAction method
-//   // pass the setSubmitAction method the api related code
-//   api
-//     .deleteCards(id)
-//     .then((res) => {
-//       cardSection.addItem({ name, link });
-
-//       renderCard({ name, link });
-
-//       deleteCardPopup.close();
-//     })
-//     .catch((err) => {
-//       console.log(err); // log the error to the console
-//     });
-// }
 
 // new add card form
 
@@ -132,6 +100,30 @@ function handleNewCardSubmit(name, link) {
     .catch((err) => {
       console.log(err); // log the error to the console
     });
+}
+
+// new is liked today
+
+function handleIsLiked(card) {
+  if (card.isLiked()) {
+    api
+      .dislikeCards(card.getId())
+      .then((res) => {
+        card.likeCards(res._isLiked);
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
+  } else {
+    api
+      .likeCards(card.getId())
+      .then((res) => {
+        card.setLiked(!res._isLiked);
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
+  }
 }
 
 // user info
@@ -195,7 +187,8 @@ function createCard(cardData) {
       popupWithImage.open(cardData.link, cardData.name);
     },
     // pass the delete handler
-    handleDeleteClick
+    handleDeleteClick,
+    handleIsLiked
   );
   return cardElement.getView();
 }

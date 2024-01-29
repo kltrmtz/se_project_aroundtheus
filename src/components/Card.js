@@ -13,6 +13,7 @@ class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleIsLiked = this._handleIsLiked;
   }
 
   _setEventListeners() {
@@ -21,7 +22,8 @@ class Card {
     );
 
     this._cardLikeButton.addEventListener("click", () =>
-      this._handleLikeIcon()
+      // this._handleLikeIcon()
+      this._handleIsLiked(this)
     );
 
     this._cardDeleteButton.addEventListener(
@@ -29,7 +31,7 @@ class Card {
       () =>
         // make sure your calling correct function
         // and need to pass it an argument (pass this)
-        this.handleDeleteClick()
+        this._handleDeleteClick(this)
       // this._handleDeleteCard()
     );
   }
@@ -38,12 +40,16 @@ class Card {
     this._cardLikeButton.classList.toggle("card__like-button_active");
   }
 
-  // _handleDeleteCard() {
-  //   this._cardElement.remove();
-  //   this._cardElement = null;
-  // }
+  _handleIsLiked() {
+    this._handleIsLiked(this);
+  }
 
-  handleDeleteClick() {
+  _handleDeleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
+  _handleDeleteClick() {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
@@ -80,6 +86,23 @@ class Card {
 
   getId() {
     return this._id;
+  }
+
+  setLiked(isLiked) {
+    this._isLiked = isLiked;
+    this._updateLiked();
+  }
+
+  isLiked() {
+    return this._isLiked;
+  }
+
+  _updateLiked() {
+    if (this._isLiked) {
+      this._cardLikeButton.classList.add("card__like-button_active");
+    } else {
+      this._cardLikeButton.classList.remove("card__like-button_active");
+    }
   }
 }
 
