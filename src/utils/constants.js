@@ -62,6 +62,7 @@ export const addCardModal = document.querySelector("#add-card-modal");
 // const cardUrlInput = addCardForm.querySelector("#card-url-input");
 export const cardDeleteButton = document.querySelector(".card__delete-button");
 export const deleteCardModal = document.querySelector("#delete-card-modal");
+export const changeAvatarModal = document.querySelector("#change-avatar-modal");
 // validation
 export const validationSettings = {
   formSelector: ".modal__form",

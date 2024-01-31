@@ -44,19 +44,19 @@ class Card {
     this._handleIsLiked(this);
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-  _handleDeleteClick() {
-    this._cardElement
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => {
-        // this._handleDeleteCard();
-        this._handleDeleteClick(this);
-      });
-  }
+  // _handleDeleteClick() {
+  //   this._cardElement
+  //     .querySelector(".card__delete-button")
+  //     .addEventListener("click", () => {
+  //       // this._handleDeleteCard();
+  //       this._handleDeleteClick(this);
+  //     });
+  // }
 
   _getElement() {
     return document

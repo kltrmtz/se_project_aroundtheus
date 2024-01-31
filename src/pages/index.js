@@ -22,6 +22,7 @@ import {
   validationSettings,
   deleteCardModal,
   cardDeleteButton,
+  changeAvatarModal,
 } from "../utils/constants.js";
 
 // today vv
@@ -30,7 +31,7 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "0b8c38f4-d4b8-4f4c-9f71-c5f40b59e7bc",
+    authorization: "6b9d7180-5da2-43d6-9d7c-b9be27da22d3",
     "Content-Type": "application/json",
   },
 });
@@ -40,14 +41,17 @@ const api = new Api({
 const editFormEl = profileEditModal.querySelector(".modal__form");
 const addFormEl = addCardModal.querySelector(".modal__form");
 const deleteFormEl = deleteCardModal.querySelector(".modal__form");
+const avatarFormEl = changeAvatarModal.querySelector(".modal__form");
 
 const editFormValidator = new FormValidator(validationSettings, editFormEl);
 const addFormValidator = new FormValidator(validationSettings, addFormEl);
 const deleteFormValidator = new FormValidator(validationSettings, deleteFormEl);
+const avatarFormValidator = new FormValidator(validationSettings, avatarFormEl);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 deleteFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 // new delete card form
 
@@ -56,15 +60,13 @@ const deleteCardPopup = new PopupWithSubmit("#delete-card-modal");
 deleteCardPopup.setEventListeners();
 
 function handleDeleteClick(card) {
-  // const cardId = card.getId();
   deleteCardPopup.open();
 
   deleteCardPopup.setSubmitAction(() => {
     api
-      // .deleteCard(card.getId())
       .deleteCard(card._id)
       .then(() => {
-        card.handleDeleteClick();
+        card.handleDeleteCard();
         deleteCardPopup.close();
       })
       .catch((err) => {
@@ -91,10 +93,7 @@ function handleNewCardSubmit(name, link) {
   api
     .createCard({ name, link })
     .then((res) => {
-      cardSection.addItem({ name, link });
-
-      renderCard({ name, link });
-
+      cardSection.addItem(res);
       newCardPopup.close();
     })
     .catch((err) => {
@@ -107,7 +106,8 @@ function handleNewCardSubmit(name, link) {
 function handleIsLiked(card) {
   if (card.isLiked()) {
     api
-      .dislikeCards(card.getId())
+      // .dislikeCards(card.getId())
+      .dislikeCards(card._id)
       .then((res) => {
         card.likeCards(res._isLiked);
       })
@@ -116,7 +116,7 @@ function handleIsLiked(card) {
       });
   } else {
     api
-      .likeCards(card.getId())
+      .likeCards(card._id)
       .then((res) => {
         card.setLiked(!res._isLiked);
       })
@@ -126,9 +126,40 @@ function handleIsLiked(card) {
   }
 }
 
+// new update profile avatar
+const profileAvatarButton = document.querySelector(
+  ".profile__image-avatar-button"
+);
+profileAvatarButton.addEventListener("click", () => {
+  changeAvatarPopup.open();
+  // handleUpdateAvatar;
+});
+
+const changeAvatarPopup = new PopupWithForm(
+  "#change-avatar-modal",
+  handleUpdateAvatar
+);
+changeAvatarPopup.setEventListeners();
+
+function handleUpdateAvatar(inputValues) {
+  api
+    .updateAvatar(inputValues.url)
+    .then((res) => {
+      userInfo.setUserAvatar(inputValues.url);
+      changeAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(err); // log the error to the console
+    });
+}
+
 // user info
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 
 // edit profile form
 
@@ -202,32 +233,28 @@ function renderCard(cardData) {
 
 let cardSection;
 
-api
-  .getInitialCards()
-  .then((res) => {
-    cardSection = new Section(
-      {
-        items: res,
-        renderer: (cardData) => {
-          createCard(cardData);
-        },
-      },
-      ".cards__list"
-    );
-    cardSection.renderItems();
-    // console.log(res);
-  })
+api.getInitialCards().then((res) => {
+  cardSection = new Section(
+    {
+      items: res,
+      renderer: createCard,
+    },
+    ".cards__list"
+  );
+  cardSection.renderItems();
+  // console.log(res);
+});
 
-  .catch((err) => {
-    console.log(err); // log the error to the console
-  });
+// .catch((err) => {
+//   console.log(err); // log the error to the console
+// });
 
 api
   .getUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
     // Need to Create this function
-    // userInfo.setUserAvatar(res);
+    userInfo.setUserAvatar(res.avatar);
   })
   .catch((err) => {
     console.log(err); // log the error to the console
