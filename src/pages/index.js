@@ -25,7 +25,6 @@ import {
   changeAvatarModal,
 } from "../utils/constants.js";
 
-// today vv
 // new Api
 
 const api = new Api({
@@ -63,6 +62,7 @@ function handleDeleteClick(card) {
   deleteCardPopup.open();
 
   deleteCardPopup.setSubmitAction(() => {
+    deleteCardPopup.handleLoading(true);
     api
       .deleteCard(card._id)
       .then(() => {
@@ -71,6 +71,11 @@ function handleDeleteClick(card) {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          deleteCardPopup.handleLoading(false);
+        }, 2500);
       });
   });
 }
@@ -90,6 +95,7 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 function handleNewCardSubmit(name, link) {
+  newCardPopup.handleLoading(true);
   api
     .createCard({ name, link })
     .then((res) => {
@@ -98,18 +104,22 @@ function handleNewCardSubmit(name, link) {
     })
     .catch((err) => {
       console.log(err); // log the error to the console
+    })
+    .finally(() => {
+      setTimeout(() => {
+        newCardPopup.handleLoading(false);
+      }, 2500);
     });
 }
 
-// new is liked today
+// new is liked
 
 function handleIsLiked(card) {
   if (card.isLiked()) {
     api
-      // .dislikeCards(card.getId())
       .dislikeCards(card._id)
       .then((res) => {
-        card.likeCards(res._isLiked);
+        card.setLiked(res._updateLiked);
       })
       .catch((err) => {
         console.log(err); // log the error to the console
@@ -118,7 +128,7 @@ function handleIsLiked(card) {
     api
       .likeCards(card._id)
       .then((res) => {
-        card.setLiked(!res._isLiked);
+        card.setLiked(!res._updateLiked);
       })
       .catch((err) => {
         console.log(err); // log the error to the console
@@ -132,7 +142,6 @@ const profileAvatarButton = document.querySelector(
 );
 profileAvatarButton.addEventListener("click", () => {
   changeAvatarPopup.open();
-  // handleUpdateAvatar;
 });
 
 const changeAvatarPopup = new PopupWithForm(
@@ -142,6 +151,7 @@ const changeAvatarPopup = new PopupWithForm(
 changeAvatarPopup.setEventListeners();
 
 function handleUpdateAvatar(inputValues) {
+  changeAvatarPopup.handleLoading(true);
   api
     .updateAvatar(inputValues.url)
     .then((res) => {
@@ -150,6 +160,11 @@ function handleUpdateAvatar(inputValues) {
     })
     .catch((err) => {
       console.log(err); // log the error to the console
+    })
+    .finally(() => {
+      setTimeout(() => {
+        changeAvatarPopup.handleLoading(false);
+      }, 2500);
     });
 }
 
@@ -180,6 +195,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 function handleEditProfileFormSubmit(modalData) {
+  editProfilePopup.handleLoading(true);
   api
     .updateUserProfileInfo(modalData)
     .then((res) => {
@@ -188,6 +204,11 @@ function handleEditProfileFormSubmit(modalData) {
     })
     .catch((err) => {
       console.log(err); // log the error to the console
+    })
+    .finally(() => {
+      setTimeout(() => {
+        editProfilePopup.handleLoading(false);
+      }, 2500);
     });
 }
 
@@ -199,17 +220,6 @@ const cardSelector = "#card-template";
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
 
-// recommended by tutor..breaks code
-// function createCard(cardData) {
-//   const cardElement = new Card({
-//     data: { cardData },
-//     handleImageClick: (cardElement) => {
-//       popupWithImage.open(cardData.link, cardData.name);
-//     },
-//   });
-//   return cardElement.getView();
-// }
-
 function createCard(cardData) {
   const cardElement = new Card(
     cardData,
@@ -217,43 +227,43 @@ function createCard(cardData) {
     () => {
       popupWithImage.open(cardData.link, cardData.name);
     },
-    // pass the delete handler
     handleDeleteClick,
     handleIsLiked
   );
   return cardElement.getView();
 }
 
-function renderCard(cardData) {
-  const cardElement = createCard(cardData);
-  cardSection.addItem(cardElement);
-}
+// function renderCard(cardData) {
+//   const cardElement = createCard(cardData);
+//   cardSection.addItem(cardElement);
+// }
 
 // // new Api
 
 let cardSection;
 
-api.getInitialCards().then((res) => {
-  cardSection = new Section(
-    {
-      items: res,
-      renderer: createCard,
-    },
-    ".cards__list"
-  );
-  cardSection.renderItems();
-  // console.log(res);
-});
+api
+  .getInitialCards()
+  .then((res) => {
+    cardSection = new Section(
+      {
+        items: res,
+        renderer: createCard,
+      },
+      ".cards__list"
+    );
+    cardSection.renderItems();
+    // console.log(res);
+  })
 
-// .catch((err) => {
-//   console.log(err); // log the error to the console
-// });
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  });
 
 api
   .getUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
-    // Need to Create this function
     userInfo.setUserAvatar(res.avatar);
   })
   .catch((err) => {

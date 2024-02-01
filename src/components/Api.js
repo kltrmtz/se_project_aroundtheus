@@ -2,11 +2,6 @@ import { profileTitle } from "../utils/constants";
 
 class Api {
   constructor({ baseUrl, headers }) {
-    // constructor body
-    // this.baseUrl = "https://around-api.en.tripleten-services.com/v1";
-    // this._headers = {
-    //   "Content-Type": "application/json",
-    // };
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
@@ -74,8 +69,6 @@ class Api {
     });
   }
 
-  // other methods for working with the API
-
   //  Delete Card
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
@@ -110,7 +103,7 @@ class Api {
 
   // Put Like Card
   likeCards(cardId) {
-    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "PUT",
     }).then((res) => {
@@ -124,7 +117,7 @@ class Api {
 
   // Delete Dislike Card
   dislikeCards(cardId) {
-    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "DELETE",
     }).then((res) => {
