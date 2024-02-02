@@ -75,7 +75,7 @@ function handleDeleteClick(card) {
       .finally(() => {
         setTimeout(() => {
           deleteCardPopup.handleLoading(false);
-        }, 2500);
+        }, 500);
       });
   });
 }
@@ -108,7 +108,7 @@ function handleNewCardSubmit(name, link) {
     .finally(() => {
       setTimeout(() => {
         newCardPopup.handleLoading(false);
-      }, 2500);
+      }, 500);
     });
 }
 
@@ -164,7 +164,7 @@ function handleUpdateAvatar(inputValues) {
     .finally(() => {
       setTimeout(() => {
         changeAvatarPopup.handleLoading(false);
-      }, 2500);
+      }, 500);
     });
 }
 
@@ -208,7 +208,7 @@ function handleEditProfileFormSubmit(modalData) {
     .finally(() => {
       setTimeout(() => {
         editProfilePopup.handleLoading(false);
-      }, 2500);
+      }, 500);
     });
 }
 

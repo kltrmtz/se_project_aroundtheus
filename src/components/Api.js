@@ -6,18 +6,22 @@ class Api {
     this._headers = headers;
   }
 
+  // common method process fetch request
+
+  _processResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    // if the server returns an error, reject the promise
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   //  Get User Info
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   // Update User Info
@@ -29,13 +33,7 @@ class Api {
         name: title,
         about: description,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   //  Update Avatar
@@ -46,13 +44,7 @@ class Api {
       body: JSON.stringify({
         avatar: url,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   //  Get Cards
@@ -60,13 +52,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   //  Delete Card
@@ -74,13 +60,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   // Post Create Card
@@ -92,13 +72,7 @@ class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   // Put Like Card
@@ -106,13 +80,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "PUT",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   // Delete Dislike Card
@@ -120,16 +88,10 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "DELETE",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
-  renderContent() {
+  getInitialInfo() {
     return Promise.all(this.getInitialCards(), this.getUserInfo());
   }
 }
